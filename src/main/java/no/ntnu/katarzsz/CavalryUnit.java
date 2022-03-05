@@ -1,7 +1,6 @@
 package no.ntnu.katarzsz;
 
 public class CavalryUnit extends Unit {
-    private int attackCount = 0;
 
     public CavalryUnit(String name, int health, int attack, int armor) {
         super(name, health, attack, armor);
