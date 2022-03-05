@@ -10,14 +10,14 @@ public class Army {
     private String name;
     private List<Unit> units;
 
-    public Army(String name) {
+    private Army(String name) {
         this.name = name;
     }
-    public Army(String name, List<Unit> units) {
+    private Army(String name, List<Unit> units) {
         this.name = name;
         this.units = units;
     }
-    private String getName() {
+    public String getName() {
         return this.name;
     }
     private void add(Unit unit) {
@@ -30,7 +30,7 @@ public class Army {
     private void remove(List<Unit> unit) {
         this.units.remove(unit);
     }
-    private boolean hasUnits() {
+    public boolean hasUnits() {
         if (this.units.isEmpty()) {
             return false;
         } else {
@@ -41,7 +41,7 @@ public class Army {
         //Clone this.units and return cloned list
     }*/
 
-    private Unit getRandom() {
+    public Unit getRandom() {
         Random randomNumber = new Random();
         int min = 0;
         int max = this.units.size();
