@@ -6,6 +6,7 @@ abstract class Unit {
     private int attack;
     private int armor;
     protected int gotAttackedCount = 0;
+    protected int attackCount = 0;
 
     public Unit(String name, int health, int attack, int armor) {
         this.name = name;
@@ -19,9 +20,13 @@ abstract class Unit {
 
         attackValue = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
         opponent.getAttacked();
+        this.registerAttack();
         opponent.setHealth(attackValue);
     }
 
+    protected void registerAttack() {
+        this.attackCount++;
+    }
     protected void getAttacked() {
         this.gotAttackedCount++;
     }
