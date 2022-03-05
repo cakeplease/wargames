@@ -1,7 +1,6 @@
 package no.ntnu.katarzsz;
 
 public class RangedUnit extends Unit{
-    private int gotAttackedCount = 0;
 
     public RangedUnit(String name, int health, int attack, int armor) {
         super(name, health, attack, armor);
@@ -18,11 +17,8 @@ public class RangedUnit extends Unit{
     public int getResistBonus() {
 
         if (this.gotAttackedCount == 0) {
-            this.gotAttackedCount++;
             return 6;
-
         } else if (this.gotAttackedCount == 1) {
-            this.gotAttackedCount++;
             return 4;
         }
 
