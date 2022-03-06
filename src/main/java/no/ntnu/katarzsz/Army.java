@@ -1,35 +1,66 @@
 package no.ntnu.katarzsz;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.Random;
+import java.util.*;
 
+/**
+ * Army class
+ */
 public class Army {
     private String name;
-    private List<Unit> units;
+    private List<Unit> units = new ArrayList<Unit>();
 
-    private Army(String name) {
+    /**
+     * Army constructor with only name
+     * @param name
+     */
+    public Army(String name) {
         this.name = name;
     }
-    private Army(String name, List<Unit> units) {
+
+    /**
+     * Army constructor with name and units
+     * @param name
+     * @param units list of units
+     */
+    public Army(String name, List<Unit> units) {
         this.name = name;
         this.units = units;
     }
     public String getName() {
         return this.name;
     }
-    private void add(Unit unit) {
-        this.units.add(unit);
+
+    /**
+     * Adds unit to army
+     * @param unit
+     * @return true on success, false on failure
+     */
+    public boolean add(Unit unit) {
+        return this.units.add(unit);
     }
-    private void addAll(List<Unit> units) {
-        //check if this actually works
-        this.units = Stream.concat(this.units.stream(), units.stream()).collect(Collectors.toList());
+
+    /**
+     * Adds a list of units to army
+     * @param units
+     * @return true on success, false on failure
+     */
+    public boolean addAll(List<Unit> units) {
+        return this.units.addAll(units);
     }
-    private void remove(List<Unit> unit) {
-        this.units.remove(unit);
+
+    /**
+     * Removes a unit from army
+     * @param unit
+     * @return true on success, false on failure
+     */
+    public boolean remove(Unit unit) {
+        return this.units.remove(unit);
     }
+
+    /**
+     * Checks if army has units
+     * @return true on success, false on failure
+     */
     public boolean hasUnits() {
         if (this.units.isEmpty()) {
             return false;
@@ -37,10 +68,19 @@ public class Army {
             return true;
         }
     }
-    /*private List<Unit> getAllUnits() {
-        //Clone this.units and return cloned list
-    }*/
 
+    /**
+     * Gets all units in army
+     * @return a list of units
+     */
+    public List<Unit> getAllUnits() {
+        return this.units;
+    }
+
+    /**
+     * Gets random unit from army
+     * @return random unit
+     */
     public Unit getRandom() {
         Random randomNumber = new Random();
         int min = 0;
