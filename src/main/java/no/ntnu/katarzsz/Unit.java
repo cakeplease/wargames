@@ -40,11 +40,13 @@ abstract class Unit {
      * @param opponent
      */
     public void attack(Unit opponent) {
-        int attackValue = 0;
-        attackValue = (this.getAttack() + this.getAttackBonus());
+        /*int attackValue = 0;
+        attackValue = (this.getAttack() + this.getAttackBonus());*/
+
+        int health = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
         opponent.getAttacked();
         this.registerAttack();
-        opponent.setHealth(attackValue);
+        opponent.setHealth(health);
     }
 
     /**
@@ -75,18 +77,15 @@ abstract class Unit {
     }
 
     /**
-     * Sets health based on unit's total health - (health + armor + resist bonus) minus attack value passed in
-     * @param attackValue
+     * Sets health
+     * @param health
      */
-    private void setHealth(int attackValue) {
-        if (this.health != 0) {
-            int totalHealth = this.health + this.getArmor() + this.getResistBonus();
-            if ((totalHealth - attackValue) <= 0) {
+    private void setHealth(int health) {
+            if (health <= 0) {
                 this.health = 0;
             } else {
-                this.health = totalHealth - attackValue;
+                this.health = health;
             }
-        }
     }
 
     @Override
