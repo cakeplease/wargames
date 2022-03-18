@@ -1,6 +1,7 @@
 package no.ntnu.katarzsz;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Army class
@@ -75,6 +76,34 @@ public class Army {
      */
     public List<Unit> getAllUnits() {
         return this.units;
+    }
+    /**
+     * Get all infantry units
+     * @return a list of infantry units
+     */
+    public List<Unit> getInfantryUnits() {
+        return this.units.stream().filter(u -> u instanceof InfantryUnit).collect(Collectors.toList());
+    }
+    /**
+     * Get all cavalry units
+     * @return a list of cavalry units
+     */
+    public List<Unit> getCavalryUnits() {
+        return this.units.stream().filter(u -> u instanceof CavalryUnit).collect(Collectors.toList());
+    }
+    /**
+     * Get all ranged units
+     * @return a list of ranged units
+     */
+    public List<Unit> getRangedUnits() {
+        return this.units.stream().filter(u -> u instanceof RangedUnit).collect(Collectors.toList());
+    }
+    /**
+     * Get all commander units
+     * @return a list of commander units
+     */
+    public List<Unit> getCommanderUnits() {
+        return this.units.stream().filter(u -> u instanceof CommanderUnit).collect(Collectors.toList());
     }
 
     /**
