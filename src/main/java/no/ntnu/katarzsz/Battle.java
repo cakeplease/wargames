@@ -14,9 +14,13 @@ public class Battle {
      * @param armyOne army 1
      * @param armyTwo army 2
      */
-    public Battle(Army armyOne, Army armyTwo) {
-        this.armyOne = armyOne;
-        this.armyTwo = armyTwo;
+    public Battle(Army armyOne, Army armyTwo) throws IllegalArgumentException {
+        if (!(armyOne instanceof Army) || !(armyTwo instanceof Army)) {
+            throw new IllegalArgumentException("Passed object must be an instance of Army class.");
+        } else {
+            this.armyOne = armyOne;
+            this.armyTwo = armyTwo;
+        }
     }
 
     /**
