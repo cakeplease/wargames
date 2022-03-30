@@ -2,16 +2,17 @@ package no.ntnu.katarzsz;
 
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests Army class
+ */
 class ArmyTest {
-
     @Test
     public void addUnitToArmy() {
         CavalryUnit unit = new CavalryUnit("Test", 10); //unit for testing
@@ -55,29 +56,6 @@ class ArmyTest {
         assertFalse(army.hasUnits());
     }
 
-    /**
-     * Method used below to spare space and get better readability
-     * @return army with test units of type InfantryUnit, CommanderUnit, CavalryUnit and RangedUnit
-     */
-    public Army getTestArmyWithUnitsOfAllType() {
-        InfantryUnit infantryUnit = new InfantryUnit("infantryUnit", 10);
-        InfantryUnit infantryUnit2 = new InfantryUnit("infantryUnit2", 10);
-        CommanderUnit commanderUnit = new CommanderUnit("commanderUnit", 10);
-        CommanderUnit commanderUnit2 = new CommanderUnit("commanderUnit2", 10);
-        CavalryUnit cavalryUnit = new CavalryUnit("cavalryUnit", 10);
-        CavalryUnit cavalryUnit2 = new CavalryUnit("cavalryUnit2", 10);
-        RangedUnit rangedUnit = new RangedUnit("rangedUnit", 10);
-        RangedUnit rangedUnit2 = new RangedUnit("rangedUnit2", 10);
-
-        Army army = new Army("army");
-        army.add(infantryUnit);
-        army.add(infantryUnit2);
-        army.add(commanderUnit);
-        army.add(cavalryUnit);
-
-        return army;
-    }
-
     @Test
     public void returnOnlyInfantryUnits() {
         Army army = getTestArmyWithUnitsOfAllType();
@@ -110,4 +88,27 @@ class ArmyTest {
         army.saveArmyToFile();
     }
 
+    @Test
+    public void readFromArmyFile() {
+        Army army = getTestArmyWithUnitsOfAllType();
+        army.readArmyFromFile();
+    }
+
+
+    /**
+     * Method used below to avoid duplicate code and get better readability
+     * @return army with test units of type InfantryUnit, CommanderUnit, CavalryUnit and RangedUnit
+     */
+    public Army getTestArmyWithUnitsOfAllType() {
+        Army army = new Army("Butt Stallions army");
+        army.add(new InfantryUnit("Brr-zerker", 10));
+        army.add(new InfantryUnit("Brr-zerrker2", 10));
+        army.add(new CommanderUnit("Clawbringer", 10));
+        army.add(new CommanderUnit("Clawbringer2", 10));
+        army.add(new CavalryUnit("Spellshooter", 10));
+        army.add(new CavalryUnit("Spellshooter2", 10));
+        army.add(new RangedUnit("Graveborn", 10));
+        army.add(new RangedUnit("Graveborn2", 10));
+        return army;
+    }
 }

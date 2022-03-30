@@ -4,26 +4,29 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests Battle class
+ */
 class BattleTest {
 
+    /**
+     * Simulates the battle
+     */
     @Test
     public void testSimulation() {
-        CommanderUnit unit1 = new CommanderUnit("Unit1", 20);
-        RangedUnit unit2 = new RangedUnit("Unit2", 10);
-
-        CommanderUnit unit3 = new CommanderUnit("Unit3", 20);
-        RangedUnit unit4 = new RangedUnit("Unit4", 10);
-
+        //Setup two armies
         Army armyOne = new Army("ArmyOne");
         Army armyTwo = new Army("ArmyTwo");
 
-        armyOne.add(unit1);
-        armyOne.add(unit2);
+        //Add some units to both armies
+        armyOne.add(new CommanderUnit("Unit1", 20));
+        armyOne.add(new RangedUnit("Unit2", 10));
 
-        armyTwo.add(unit3);
-        armyTwo.add(unit4);
+        armyTwo.add(new CommanderUnit("Unit3", 20));
+        armyTwo.add(new RangedUnit("Unit4", 10));
 
         Battle battle = new Battle(armyOne, armyTwo);
+        //Run battle
         Army winner = battle.simulate();
         assertTrue(winner instanceof Army);
     }

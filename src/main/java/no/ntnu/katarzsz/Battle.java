@@ -55,11 +55,9 @@ public class Battle {
                     }
                 }
             } else if (!armyOne.hasUnits()) {
-                System.out.println("ArmyTwo won!");
                 hasWinner = true;
                 return armyTwo;
             } else if (!armyTwo.hasUnits()) {
-                System.out.println("ArmyOne won!");
                 hasWinner = true;
                 return armyOne;
             }

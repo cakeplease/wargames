@@ -1,9 +1,10 @@
 package no.ntnu.katarzsz;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,9 +28,14 @@ public class Army {
      * @param name
      * @param units list of units
      */
-    public Army(String name, List<Unit> units) {
+    public Army(String name, List<Unit> units) throws Exception {
         this.name = name;
-        this.units = units;
+        if (!units.isEmpty()) {
+            this.units = units;
+        } else {
+            throw new Exception("List of units cannot be empty");
+        }
+
     }
     public String getName() {
         return this.name;
@@ -46,15 +52,20 @@ public class Army {
 
     public void saveArmyToFile() {
         String data = "";
-        Path filePath = Paths.get("/src/main/resources/army-"+this.name+".csv");
-
-
+        String escapedName = this.name.replace(" ", "-").toLowerCase();
+        Path filePath = Paths.get("src/main/resources/"+escapedName+".csv");
         data += this.name+"\n";
         for (Unit unit : this.units) {
-            data += unit.getClass()+","+unit.getName()+","+unit.getHealth()+"\n";
+            data += unit.getClass().getSimpleName()+","+unit.getName()+","+unit.getHealth()+"\n";
         }
 
         DataHandler.saveToFile(data, filePath);
+    }
+
+    public void readArmyFromFile() {
+        String escapedName = this.name.replace(" ", "-").toLowerCase();
+        Path filePath = Paths.get("src/main/resources/"+escapedName+".csv");
+        DataHandler.readFromFile(filePath);
     }
 
     /**
