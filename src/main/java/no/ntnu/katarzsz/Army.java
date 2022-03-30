@@ -1,5 +1,9 @@
 package no.ntnu.katarzsz;
 
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,6 +42,19 @@ public class Army {
      */
     public boolean add(Unit unit) {
         return this.units.add(unit);
+    }
+
+    public void saveArmyToFile() {
+        String data = "";
+        Path filePath = Paths.get("/src/main/resources/army-"+this.name+".csv");
+
+
+        data += this.name+"\n";
+        for (Unit unit : this.units) {
+            data += unit.getClass()+","+unit.getName()+","+unit.getHealth()+"\n";
+        }
+
+        DataHandler.saveToFile(data, filePath);
     }
 
     /**

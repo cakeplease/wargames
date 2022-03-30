@@ -104,4 +104,10 @@ class ArmyTest {
         assertTrue(army.getCommanderUnits().stream().allMatch(u -> u instanceof CommanderUnit));
     }
 
+    @Test
+    public void writeArmyToFile() {
+        Army army = getTestArmyWithUnitsOfAllType();
+        army.saveArmyToFile();
+    }
+
 }

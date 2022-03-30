@@ -1,0 +1,5 @@
+army
+class no.ntnu.katarzsz.InfantryUnit,infantryUnit,10
+class no.ntnu.katarzsz.InfantryUnit,infantryUnit2,10
+class no.ntnu.katarzsz.CommanderUnit,commanderUnit,10
+class no.ntnu.katarzsz.CavalryUnit,cavalryUnit,10
