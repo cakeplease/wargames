@@ -35,6 +35,10 @@ public class CavalryUnit extends Unit {
         return 2;
     }
 
+    /**
+     * Gets resist bonus
+     * @return resist bonus value
+     */
     public int getResistBonus() {
         return 1;
     }

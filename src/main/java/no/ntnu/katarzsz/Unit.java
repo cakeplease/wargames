@@ -40,9 +40,6 @@ abstract class Unit {
      * @param opponent
      */
     public void attack(Unit opponent) {
-        /*int attackValue = 0;
-        attackValue = (this.getAttack() + this.getAttackBonus());*/
-
         int health = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
         opponent.getAttacked();
         this.registerAttack();
@@ -63,15 +60,34 @@ abstract class Unit {
         this.gotAttackedCount++;
     }
 
+    /**
+     * Get name
+     * @return name
+     */
     public String getName() {
         return this.name;
     }
+
+    /**
+     * Get health
+     * @return health
+     */
     public int getHealth() {
         return this.health;
     }
+
+    /**
+     * Get attack value
+     * @return attack value
+     */
     public int getAttack() {
         return this.attack;
     }
+
+    /**
+     * Get armor value
+     * @return armor value
+     */
     public int getArmor() {
         return this.armor;
     }
@@ -90,7 +106,6 @@ abstract class Unit {
 
     @Override
     public String toString() {
-
         return "Unit{" +
                 "name='" + name + '\'' +
                 ", health=" + health +
@@ -99,6 +114,10 @@ abstract class Unit {
                 '}';
     }
 
+    /**
+     * Abstract functions for getting attack bonus and resist bonus
+     * @return
+     */
     abstract int getAttackBonus();
     abstract int getResistBonus();
 

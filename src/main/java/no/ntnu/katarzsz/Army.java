@@ -1,8 +1,5 @@
 package no.ntnu.katarzsz;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -37,6 +34,11 @@ public class Army {
         }
 
     }
+
+    /**
+     * Get name of the army
+     * @return name
+     */
     public String getName() {
         return this.name;
     }
@@ -50,6 +52,9 @@ public class Army {
         return this.units.add(unit);
     }
 
+    /**
+     * Saves army to a file under resources folder
+     */
     public void saveArmyToFile() {
         String data = "";
         String escapedName = this.name.replace(" ", "-").toLowerCase();
@@ -62,6 +67,9 @@ public class Army {
         DataHandler.saveToFile(data, filePath);
     }
 
+    /**
+     * Reads army from file
+     */
     public void readArmyFromFile() {
         String escapedName = this.name.replace(" ", "-").toLowerCase();
         Path filePath = Paths.get("src/main/resources/"+escapedName+".csv");

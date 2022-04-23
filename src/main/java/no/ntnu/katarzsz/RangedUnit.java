@@ -24,6 +24,10 @@ public class RangedUnit extends Unit{
         super(name, health, 15,8);
     }
 
+    /**
+     * Gets attack bonus
+     * @return attack bonus value
+     */
     public int getAttackBonus() {
         return 3;
     }
