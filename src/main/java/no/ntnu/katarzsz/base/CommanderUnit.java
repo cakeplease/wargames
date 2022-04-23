@@ -1,9 +1,9 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
 
 /**
  * CommanderUnit class which extends CavalryUnit
  */
-public class CommanderUnit extends CavalryUnit{
+public class CommanderUnit extends CavalryUnit {
     /**
      * CommanderUnit constructor with all params
      * @param name

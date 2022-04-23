@@ -1,9 +1,11 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
+
+import no.ntnu.katarzsz.base.Unit;
 
 /**
  * RangedUnit class which extends Unit
  */
-public class RangedUnit extends Unit{
+public class RangedUnit extends Unit {
     /**
      * RangedUnit constructor with all params
      * @param name

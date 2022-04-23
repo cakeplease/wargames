@@ -1,4 +1,4 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.model;
 
 import java.io.BufferedReader;
 import java.io.File;

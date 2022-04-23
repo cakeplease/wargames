@@ -1,5 +1,9 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
 
+import no.ntnu.katarzsz.base.Army;
+import no.ntnu.katarzsz.base.Battle;
+import no.ntnu.katarzsz.base.CommanderUnit;
+import no.ntnu.katarzsz.base.RangedUnit;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

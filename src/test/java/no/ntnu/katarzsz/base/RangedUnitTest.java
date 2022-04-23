@@ -1,5 +1,6 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
 
+import no.ntnu.katarzsz.base.RangedUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

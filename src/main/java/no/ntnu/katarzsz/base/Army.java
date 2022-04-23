@@ -1,5 +1,6 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
 
+import no.ntnu.katarzsz.model.DataHandler;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -32,7 +33,6 @@ public class Army {
         } else {
             throw new Exception("List of units cannot be empty");
         }
-
     }
 
     /**

@@ -1,5 +1,6 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
 
+import no.ntnu.katarzsz.base.*;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;

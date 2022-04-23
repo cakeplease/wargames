@@ -1,4 +1,6 @@
-package no.ntnu.katarzsz;
+package no.ntnu.katarzsz.base;
+
+import no.ntnu.katarzsz.base.Unit;
 
 /**
  * InfantryUnit class which extends Unit
