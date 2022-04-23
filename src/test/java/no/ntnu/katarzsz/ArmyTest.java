@@ -91,13 +91,12 @@ class ArmyTest {
         army.readArmyFromFile();
     }
 
-
     /**
      * Method used below to avoid duplicate code and get better readability
      * @return army with test units of type InfantryUnit, CommanderUnit, CavalryUnit and RangedUnit
      */
     public Army getTestArmyWithUnitsOfAllType() {
-        Army army = new Army("Butt Stallions army");
+        Army army = new Army("The army");
         army.add(new InfantryUnit("Brr-zerker", 10));
         army.add(new InfantryUnit("Brr-zerrker2", 10));
         army.add(new CommanderUnit("Clawbringer", 10));
