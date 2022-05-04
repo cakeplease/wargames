@@ -1,11 +1,14 @@
 package no.ntnu.katarzsz.base;
 
+import static no.ntnu.katarzsz.base.Terrain.*;
+
 /**
  * Battle class
  */
 public class Battle {
     final Army armyOne;
     final Army armyTwo;
+    private Terrain terrain;
 
     private boolean hasWinner = false;
 
@@ -29,6 +32,7 @@ public class Battle {
      * @return winner army
      */
     public Army simulate() {
+        terrain = PLAINS;
         Unit randomUnit1;
         Unit randomUnit2;
 
@@ -37,6 +41,9 @@ public class Battle {
 
                 randomUnit1 = armyOne.getRandom();
                 randomUnit2 = armyTwo.getRandom();
+
+                randomUnit1.setTerrain(terrain);
+                randomUnit2.setTerrain(terrain);
 
                 randomUnit1.attack(randomUnit2);
 
@@ -47,6 +54,9 @@ public class Battle {
                 if (armyTwo.hasUnits()) {
                     randomUnit1 = armyOne.getRandom();
                     randomUnit2 = armyTwo.getRandom();
+
+                    randomUnit1.setTerrain(terrain);
+                    randomUnit2.setTerrain(terrain);
 
                     randomUnit2.attack(randomUnit1);
 

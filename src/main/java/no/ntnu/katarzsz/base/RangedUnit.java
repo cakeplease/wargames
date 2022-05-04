@@ -1,11 +1,14 @@
 package no.ntnu.katarzsz.base;
 
-import no.ntnu.katarzsz.base.Unit;
+import static no.ntnu.katarzsz.base.Terrain.*;
 
 /**
  * RangedUnit class which extends Unit
  */
 public class RangedUnit extends Unit {
+
+    Terrain terrain = null;
+
     /**
      * RangedUnit constructor with all params
      * @param name
@@ -31,6 +34,12 @@ public class RangedUnit extends Unit {
      * @return attack bonus value
      */
     public int getAttackBonus() {
+        if (terrain == HILL) {
+            return 9;
+        } else if (terrain == FOREST) {
+            return 1;
+        }
+
         return 3;
     }
 
@@ -46,5 +55,13 @@ public class RangedUnit extends Unit {
         }
 
         return 2;
+    }
+
+    /**
+     * Set terrain type
+     * @param terrainType
+     */
+    public void setTerrain(Terrain terrainType) {
+        terrain = terrainType;
     }
 }

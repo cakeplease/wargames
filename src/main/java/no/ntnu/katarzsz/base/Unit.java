@@ -120,5 +120,6 @@ abstract class Unit {
      */
     abstract int getAttackBonus();
     abstract int getResistBonus();
+    abstract void setTerrain(Terrain terrainType);
 
 }

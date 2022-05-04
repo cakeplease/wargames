@@ -1,11 +1,14 @@
 package no.ntnu.katarzsz.base;
 
-import no.ntnu.katarzsz.base.Unit;
+import static no.ntnu.katarzsz.base.Terrain.*;
 
 /**
  * CavalryUnit class which extends Unit
  */
 public class CavalryUnit extends Unit {
+
+    Terrain terrain = null;
+
     /**
      * CavalryUnit constructor with all params
      * @param name
@@ -27,21 +30,40 @@ public class CavalryUnit extends Unit {
     }
 
     /**
-     * Gets attack bonus if it's first time it's attacking
-     * @return attack bonus if attack count is 0
+     * Gets attack bonus, extra bonus if it's the first time attack or/and the terrain type is plains
+     * @return attack bonus
      */
     public int getAttackBonus() {
-        if (this.attackCount == 0) {
+        if (terrain == PLAINS) {
+            if (this.attackCount == 0) {
+                return 12;
+            }
             return 6;
+        } else {
+            if (this.attackCount == 0) {
+                return 6;
+            }
         }
         return 2;
     }
 
     /**
-     * Gets resist bonus
+     * Gets resist bonus, no bonus if terrain type is forest
      * @return resist bonus value
      */
     public int getResistBonus() {
-        return 1;
+        if (terrain == FOREST) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    /**
+     * Set terrain type
+     * @param terrainType
+     */
+    public void setTerrain(Terrain terrainType) {
+        terrain = terrainType;
     }
 }
