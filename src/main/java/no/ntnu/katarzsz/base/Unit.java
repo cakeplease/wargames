@@ -3,7 +3,7 @@ package no.ntnu.katarzsz.base;
 /**
  * Unit class - template for other unit classes
  */
-abstract class Unit {
+public abstract class Unit {
     private String name;
     private int health;
     private int attack;

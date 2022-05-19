@@ -52,29 +52,6 @@ public class Army {
         return this.units.add(unit);
     }
 
-    /**
-     * Saves army to a file under resources folder
-     */
-    public void saveArmyToFile() {
-        String data = "";
-        String escapedName = this.name.replace(" ", "-").toLowerCase();
-        Path filePath = Paths.get("src/main/resources/"+escapedName+".csv");
-        data += this.name+"\n";
-        for (Unit unit : this.units) {
-            data += unit.getClass().getSimpleName()+","+unit.getName()+","+unit.getHealth()+"\n";
-        }
-
-        DataHandler.saveToFile(data, filePath);
-    }
-
-    /**
-     * Reads army from file
-     */
-    public void readArmyFromFile() {
-        String escapedName = this.name.replace(" ", "-").toLowerCase();
-        Path filePath = Paths.get("src/main/resources/"+escapedName+".csv");
-        DataHandler.readFromFile(filePath);
-    }
 
     /**
      * Adds a list of units to army

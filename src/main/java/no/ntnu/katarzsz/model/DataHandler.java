@@ -22,6 +22,7 @@ public class DataHandler {
         }
     }
 
+    //Not really in use anymore
     public static void readFromFile(Path path) {
         if (Files.exists(path)) {
             try (BufferedReader bufferedReader = Files.newBufferedReader(path)) {

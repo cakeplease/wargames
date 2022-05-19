@@ -26,10 +26,6 @@ public class ScreenController {
         viewMap.put(name, view);
     }
 
-    protected void removeScreen(String name){
-        screenMap.remove(name);
-    }
-
     public void activate(String name){
         viewMap.get(name).setup();
         main.setRoot( screenMap.get(name));
