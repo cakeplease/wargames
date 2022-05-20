@@ -49,12 +49,12 @@ public class MainScreen extends View {
 
         loadArmy1Button.setOnAction(e -> {
             Army army1 = GUIController.uploadArmy();
-            /*army1Name.setText(army1.getName());
+            army1Name.setText(army1.getName());
             unitNumber.setText("Number of units: "+army1.getAllUnits().size());
             infantryUnitNumber.setText("Infantry units: "+army1.getInfantryUnits().size());
             commanderUnitNumber.setText("Commander units: "+army1.getCommanderUnits().size());
             rangedUnitNumber.setText("Ranged units: "+army1.getRangedUnits().size());
-            cavalryUnitNumber.setText("Cavalry units: "+army1.getCavalryUnits().size());*/
+            cavalryUnitNumber.setText("Cavalry units: "+army1.getCavalryUnits().size());
         });
 
         army1Info.getChildren().addAll(army1Name,loadArmy1Button, unitNumber,infantryUnitNumber,commanderUnitNumber,rangedUnitNumber,cavalryUnitNumber);

@@ -2,10 +2,8 @@ package no.ntnu.katarzsz.controller;
 
 import no.ntnu.katarzsz.base.*;
 import no.ntnu.katarzsz.model.DataHandler;
-
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,7 +28,7 @@ public class ArmyController {
     /**
      * Reads army from file
      */
-    public static void readArmyFromFile(File file) {
+    public static Army readArmyFromFile(File file) {
         Army army = null;
         Path filePath =  Paths.get(file.getPath());
         if (Files.exists(filePath)) {
@@ -43,43 +41,38 @@ public class ArmyController {
                 while ((line = bufferedReader.readLine()) != null) {
                     if (armyName == null) {
                         armyName = line;
+                    } else {
+                        String[] unit = line.split(splitBy);
+                        String unitType = unit[0].toString();
+
+                        switch (unitType) {
+                            case "InfantryUnit":
+                                InfantryUnit infantryUnit = new InfantryUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                units.add(infantryUnit);
+                                break;
+                            case "CommanderUnit":
+                                CommanderUnit commanderUnit = new CommanderUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                units.add(commanderUnit);
+                                break;
+                            case "CavalryUnit":
+                                CavalryUnit cavalryUnit = new CavalryUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                units.add(cavalryUnit);
+
+                                break;
+                            case "RangedUnit":
+                                RangedUnit rangedUnit = new RangedUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                units.add(rangedUnit);
+                                break;
+                            default:
+                                System.out.println("Invalid unit type");
+                        }
                     }
-
-                    String[] unit = line.split(splitBy);
-                    String unitType = unit[0].toString();
-                    System.out.println("test!!!");
-                    System.out.println(unit);
-                    System.out.println(unit[1].toString()+ " "+unit[2].toString());
-                    System.out.println(unit[1]);
-                    System.out.println(unit[2]);
-
-                   /* switch (unitType) {
-                        case "InfantryUnit":
-                            InfantryUnit infantryUnit = new InfantryUnit(unit[1].toString(), Integer.getInteger(unit[2].toString()));
-                            units.add(infantryUnit);
-                            break;
-                        case "CommanderUnit":
-                            CommanderUnit commanderUnit = new CommanderUnit(unit[1].toString(), Integer.getInteger(unit[2].toString()));
-                            units.add(commanderUnit);
-                            break;
-                        case "CavalryUnit":
-                            CavalryUnit cavalryUnit = new CavalryUnit(unit[1].toString(), Integer.getInteger(unit[2].toString()));
-                            units.add(cavalryUnit);
-
-                            break;
-                        case "RangedUnit":
-                            RangedUnit rangedUnit = new RangedUnit(unit[1].toString(), Integer.getInteger(unit[2].toString()));
-                            units.add(rangedUnit);
-                            break;
-                        default:
-                            System.out.println("Invalid unit type");
-                    }*/
                 }
-               // army = new Army(armyName, units);
+                army = new Army(armyName, units);
             } catch (Exception e) {
-                //throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
         }
-       // return army;
+       return army;
     }
 }

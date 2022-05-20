@@ -10,7 +10,6 @@ import java.io.File;
  * GUIController class for user actions
  */
 public class GUIController {
-
     public static Army uploadArmy() {
         Army army = null;
         FileChooser fileChooser = new FileChooser();
@@ -20,7 +19,7 @@ public class GUIController {
         File selectedFile = fileChooser.showOpenDialog(StartScreenView.stage);
 
         if (selectedFile != null) {
-            ArmyController.readArmyFromFile(selectedFile);
+            army = ArmyController.readArmyFromFile(selectedFile);
         }
 
         return army;

@@ -80,7 +80,7 @@ class ArmyTest {
         assertTrue(army.getCommanderUnits().stream().allMatch(u -> u instanceof CommanderUnit));
     }
 
-    @Test
+    /*@Test
     public void writeArmyToFile() {
         Army army = getTestArmyWithUnitsOfAllType();
         army.saveArmyToFile();
@@ -90,7 +90,7 @@ class ArmyTest {
     public void readFromArmyFile() {
         Army army = getTestArmyWithUnitsOfAllType();
         army.readArmyFromFile();
-    }
+    }*/
 
     /**
      * Method used below to avoid duplicate code and get better readability

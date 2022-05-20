@@ -95,28 +95,28 @@ public class Army {
      * @return a list of infantry units
      */
     public List<Unit> getInfantryUnits() {
-        return this.units.stream().filter(u -> u instanceof InfantryUnit).collect(Collectors.toList());
+        return this.units.stream().filter(u -> u.getClass().equals(InfantryUnit.class)).collect(Collectors.toList());
     }
     /**
      * Get all cavalry units
      * @return a list of cavalry units
      */
     public List<Unit> getCavalryUnits() {
-        return this.units.stream().filter(u -> u instanceof CavalryUnit).collect(Collectors.toList());
+        return this.units.stream().filter(u -> u.getClass().equals(CavalryUnit.class)).collect(Collectors.toList());
     }
     /**
      * Get all ranged units
      * @return a list of ranged units
      */
     public List<Unit> getRangedUnits() {
-        return this.units.stream().filter(u -> u instanceof RangedUnit).collect(Collectors.toList());
+        return this.units.stream().filter(u -> u.getClass().equals(RangedUnit.class)).collect(Collectors.toList());
     }
     /**
      * Get all commander units
      * @return a list of commander units
      */
     public List<Unit> getCommanderUnits() {
-        return this.units.stream().filter(u -> u instanceof CommanderUnit).collect(Collectors.toList());
+        return this.units.stream().filter(u -> u.getClass().equals(CommanderUnit.class)).collect(Collectors.toList());
     }
 
     /**
