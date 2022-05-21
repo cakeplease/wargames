@@ -1,7 +1,6 @@
 package no.ntnu.katarzsz.view;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -9,9 +8,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import no.ntnu.katarzsz.base.Army;
+import no.ntnu.katarzsz.controller.ArmyController;
 import no.ntnu.katarzsz.controller.GUIController;
 import no.ntnu.katarzsz.controller.ScreenController;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class MainScreen extends View {
     protected GridPane pane;
@@ -30,51 +32,93 @@ public class MainScreen extends View {
     public void setup() {
         this.resetPane();
 
+        /**
+         * Army panes
+         */
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(100);
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(100);
         pane.getColumnConstraints().addAll(column1, column2); // each get 50% of width
 
-        ScrollPane army1Pane = new ScrollPane();
-        army1Pane.setPannable(true);
-        VBox army1Info = new VBox();
-        Text army1Name = new Text("Army 1");
-        Button loadArmy1Button = new Button("Load");
-        Text unitNumber = new Text("Number of units: -");
-        Text infantryUnitNumber = new Text("Infantry units: -");
-        Text commanderUnitNumber = new Text("Commander units: -");
-        Text rangedUnitNumber = new Text("Ranged units: -");
-        Text cavalryUnitNumber = new Text("Cavalry units: -");
+        for (int i=0; i<2; i++) {
+            ScrollPane armyPane;
+            VBox armyInfo;
+            VBox unitsInfo;
+            Text armyName;
+            Button loadArmyButton;
+            Text unitNumber;
+            Text infantryUnitNumber;
+            Text commanderUnitNumber;
+            Text rangedUnitNumber;
+            Text cavalryUnitNumber;
+            Text armyFilePath;
 
-        loadArmy1Button.setOnAction(e -> {
-            Army army1 = GUIController.uploadArmy();
-            army1Name.setText(army1.getName());
-            unitNumber.setText("Number of units: "+army1.getAllUnits().size());
-            infantryUnitNumber.setText("Infantry units: "+army1.getInfantryUnits().size());
-            commanderUnitNumber.setText("Commander units: "+army1.getCommanderUnits().size());
-            rangedUnitNumber.setText("Ranged units: "+army1.getRangedUnits().size());
-            cavalryUnitNumber.setText("Cavalry units: "+army1.getCavalryUnits().size());
-        });
+            armyPane = new ScrollPane();
+            armyInfo = new VBox();
+            unitsInfo = new VBox();
 
-        army1Info.getChildren().addAll(army1Name,loadArmy1Button, unitNumber,infantryUnitNumber,commanderUnitNumber,rangedUnitNumber,cavalryUnitNumber);
-        army1Pane.setContent(army1Info);
+            armyName = new Text("Army "+(i+1));
+            loadArmyButton = new Button("Load");
+            armyFilePath = new Text("Path to army file: -");
+            unitNumber = new Text("Number of units: -");
+            infantryUnitNumber = new Text("Infantry units: -");
+            commanderUnitNumber = new Text("Commander units: -");
+            rangedUnitNumber = new Text("Ranged units: -");
+            cavalryUnitNumber = new Text("Cavalry units: -");
 
-        GridPane.setConstraints(army1Pane, 0, 0); // column=0 row=0
+            Text unitsText = new Text("Units");
+            Text unitInfo = new Text("");
 
-        ScrollPane army2Pane = new ScrollPane();
-        army2Pane.setPannable(true);
-        Text test2 = new Text("Army 2");
-        Button loadArmy2 = new Button("Load");
-        loadArmy2.setOnAction(e -> GUIController.uploadArmy());
-        VBox army2Container = new VBox();
+            loadArmyButton.setOnAction(e -> {
+                Army army;
+                Path path = GUIController.uploadArmy();
+                armyFilePath.setText(path.toString());
+                /*armyName.setText(army.getName());
+                unitNumber.setText("Number of units: " + army.getAllUnits().size());
+                infantryUnitNumber.setText("Infantry units: " + army.getInfantryUnits().size());
+                commanderUnitNumber.setText("Commander units: " + army.getCommanderUnits().size());
+                rangedUnitNumber.setText("Ranged units: " + army.getRangedUnits().size());
+                cavalryUnitNumber.setText("Cavalry units: " + army.getCavalryUnits().size());
 
-        army2Container.getChildren().addAll(test2,loadArmy2);
-        army2Pane.setContent(army2Container);
-        GridPane.setConstraints(army2Pane, 1, 0); // column=1 row=0
+                unitInfo.setText(army.getAllUnitsInCsvFormat());*/
+            });
+
+            ArmyController.readArmyFromFile(Path.of(armyFilePath.getText().toString()));
 
 
-        pane.getChildren().addAll(army1Pane,army2Pane);
+
+            unitsInfo.getChildren().addAll(unitsText,unitInfo);
+            armyInfo.getChildren().addAll(armyName,loadArmyButton, armyFilePath, unitNumber,infantryUnitNumber,commanderUnitNumber,rangedUnitNumber,cavalryUnitNumber,unitsInfo);
+            armyPane.setContent(armyInfo);
+
+            GridPane.setConstraints(armyPane, i, 0);
+            pane.getChildren().add(armyPane);
+        }
+
+        /**
+         * Menu pane
+         */
+        VBox menuPane = new VBox();
+        Button resetButton = new Button("Reset armies");
+        Button terrainButton = new Button("Choose terrain");
+        Button startBattleButton = new Button("Start battle");
+
+        menuPane.getChildren().addAll(resetButton, terrainButton, startBattleButton);
+        GridPane.setConstraints(menuPane, 3, 0);
+        pane.getChildren().add(menuPane);
+
+        /**
+         * Simulation pane
+         */
+        ScrollPane simulationPane = new ScrollPane();
+        VBox simulationInfo = new VBox();
+
+        simulationInfo.getChildren().addAll();
+
+        simulationPane.setContent(simulationInfo);
+        GridPane.setConstraints(simulationPane, 1, 1);
+        pane.getChildren().add(simulationPane);
     }
 
     public void resetPane() {

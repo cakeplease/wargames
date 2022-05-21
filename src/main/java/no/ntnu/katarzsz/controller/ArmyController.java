@@ -4,6 +4,7 @@ import no.ntnu.katarzsz.base.*;
 import no.ntnu.katarzsz.model.DataHandler;
 import java.io.BufferedReader;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,9 +26,6 @@ public class ArmyController {
         DataHandler.saveToFile(data, filePath);
     }
 
-    /**
-     * Reads army from file
-     */
     public static Army readArmyFromFile(File file) {
         Army army = null;
         Path filePath =  Paths.get(file.getPath());
@@ -57,7 +55,6 @@ public class ArmyController {
                             case "CavalryUnit":
                                 CavalryUnit cavalryUnit = new CavalryUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
                                 units.add(cavalryUnit);
-
                                 break;
                             case "RangedUnit":
                                 RangedUnit rangedUnit = new RangedUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
@@ -73,6 +70,32 @@ public class ArmyController {
                 throw new RuntimeException(e);
             }
         }
-       return army;
+        return army;
+    }
+
+    /**
+    * Upload army
+    */
+    public static Path uploadArmy(Path path) {
+        Path temporaryFilePath = Paths.get(file.getPath());
+        Path filePath = Paths.get("src/main/resources/"+file.getName());
+        if (!Files.exists(temporaryFilePath)) {
+            String data = "";
+            try (BufferedReader bufferedReader = Files.newBufferedReader(temporaryFilePath)) {
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    data += line+"\n";
+                }
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Files.writeString(filePath, data, StandardCharsets.UTF_8);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return filePath;
     }
 }

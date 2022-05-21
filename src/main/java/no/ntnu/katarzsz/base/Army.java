@@ -1,8 +1,5 @@
 package no.ntnu.katarzsz.base;
 
-import no.ntnu.katarzsz.model.DataHandler;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -90,6 +87,16 @@ public class Army {
     public List<Unit> getAllUnits() {
         return this.units;
     }
+
+    public String getAllUnitsInCsvFormat() {
+        String csvString = "";
+        for (Unit unit : this.units) {
+            csvString += unit.getClass().getSimpleName()+", "+unit.getName()+", "+unit.getHealth() +", "+unit.getArmor()+", "+unit.getAttack()+"\n";
+        }
+
+        return csvString;
+    }
+
     /**
      * Get all infantry units
      * @return a list of infantry units
