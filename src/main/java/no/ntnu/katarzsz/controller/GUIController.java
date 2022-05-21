@@ -1,11 +1,10 @@
 package no.ntnu.katarzsz.controller;
 
 import javafx.stage.FileChooser;
-import no.ntnu.katarzsz.base.Army;
+import no.ntnu.katarzsz.base.Terrain;
 import no.ntnu.katarzsz.view.StartScreenView;
 import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * GUIController class for user actions
@@ -20,8 +19,12 @@ public class GUIController {
         File selectedFile = fileChooser.showOpenDialog(StartScreenView.stage);
 
         if (selectedFile != null) {
-            newFilePath = ArmyController.uploadArmy(Paths.get(selectedFile.getPath()));
+            newFilePath = ArmyController.uploadArmy(selectedFile);
         }
         return newFilePath;
+    }
+
+    public static void chooseTerrain(Terrain terrain) {
+
     }
 }

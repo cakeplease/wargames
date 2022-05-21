@@ -1,6 +1,8 @@
 package no.ntnu.katarzsz.view;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -11,48 +13,46 @@ import javafx.stage.Stage;
 import no.ntnu.katarzsz.controller.ScreenController;
 
 public class StartScreenView extends Application {
-    private VBox frontPage = new VBox();
+    private BorderPane frontPage = new BorderPane();
     private Scene frontPageScene = new Scene(frontPage);
     protected ScreenController screenController = new ScreenController(frontPageScene);
-
     public static Stage stage;
-
     private MainScreen mainScreen = new MainScreen(screenController);
-    /* private AddTeamView addTeamView = new AddTeamView(screenController);
-    private GroupsView groupsView = new GroupsView(screenController);
-    private NoGroupsView noGroupsView = new NoGroupsView(screenController);
-    private TeamsView teamsView = new TeamsView(screenController);
-    private MatchesView matchesView = new MatchesView(screenController);
-    private TournamentBracketView tournamentBracketView = new TournamentBracketView(screenController);*/
 
     @Override
     public void start(Stage stage) {
         StartScreenView.stage = stage;
         screenController.addScreen("MainScreen", mainScreen);
-
-        //stage.setFullScreen(true);
-
+        frontPage.getStyleClass().add("#front-page");
         stage.setScene(frontPageScene);
-
         stage.setTitle("Wargames");
         stage.show();
         this.setup();
     }
 
     public void setup() {
-        Text welcome = new Text("WARGAMES");
-        welcome.setId("title-text");
+        VBox vBox = new VBox();
+        Text gameTitle = new Text("WARGAMES");
+        gameTitle.setStyle("-fx-font-family: 'Book Antiqua'; -fx-font-size: 33px");
+        gameTitle.setId("title-text");
 
-        Button start = new Button();
-        start.setText("Start");
-        start.setStyle("-fx-font-size:20");
-        start.setOnAction(e -> screenController.activate("MainScreen"));
+        Button startButton = new Button();
+        startButton.setText("Start");
+        startButton.setStyle("-fx-font-size:20");
+        startButton.setOnAction(e -> screenController.activate("MainScreen"));
 
-        Button exit = new Button();
-        exit.setText("Quit");
-        exit.setStyle("-fx-font-size:20");
-        exit.setOnAction(e -> System.exit(0));
-        frontPage.getChildren().addAll(welcome, start,exit);
+        Button exitButton = new Button();
+        exitButton.setText("Quit");
+        exitButton.setStyle("-fx-font-size:20");
+        exitButton.setOnAction(e -> System.exit(0));
+
+        vBox.getChildren().addAll(gameTitle, startButton, exitButton);
+        vBox.setAlignment(Pos.TOP_CENTER);
+        vBox.setSpacing(20);
+        vBox.setPadding(new Insets(50, 50, 50, 50));
+
+        frontPage.setPadding(new Insets(10, 10, 10, 10));
+        frontPage.setCenter(vBox);
     }
 
     @Override

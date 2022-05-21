@@ -26,9 +26,8 @@ public class ArmyController {
         DataHandler.saveToFile(data, filePath);
     }
 
-    public static Army readArmyFromFile(File file) {
+    public static Army readArmyFromFile(Path filePath) {
         Army army = null;
-        Path filePath =  Paths.get(file.getPath());
         if (Files.exists(filePath)) {
             try (BufferedReader bufferedReader = Files.newBufferedReader(filePath)) {
                 String line;
@@ -76,10 +75,10 @@ public class ArmyController {
     /**
     * Upload army
     */
-    public static Path uploadArmy(Path path) {
+    public static Path uploadArmy(File file) {
         Path temporaryFilePath = Paths.get(file.getPath());
         Path filePath = Paths.get("src/main/resources/"+file.getName());
-        if (!Files.exists(temporaryFilePath)) {
+        if (!Files.exists(filePath)) {
             String data = "";
             try (BufferedReader bufferedReader = Files.newBufferedReader(temporaryFilePath)) {
                 String line;
