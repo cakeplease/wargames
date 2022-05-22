@@ -48,6 +48,7 @@ public class StartView extends Application {
         Button startButton = new Button();
         startButton.setText("Start");
         startButton.setStyle("-fx-font-size:20");
+
         startButton.setOnAction(e -> screenController.activate("GameView"));
 
         Button exitButton = new Button();

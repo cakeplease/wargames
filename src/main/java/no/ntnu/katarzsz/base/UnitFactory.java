@@ -12,13 +12,13 @@ public class UnitFactory {
             return null;
         }
 
-        if (typeOfUnit.equalsIgnoreCase("commander")) {
+        if (typeOfUnit.equalsIgnoreCase("CommanderUnit")) {
             return new CommanderUnit(name, health);
-        } else if (typeOfUnit.equalsIgnoreCase("infantry")) {
+        } else if (typeOfUnit.equalsIgnoreCase("InfantryUnit")) {
             return new InfantryUnit(name, health);
-        } else if (typeOfUnit.equalsIgnoreCase("ranged")) {
+        } else if (typeOfUnit.equalsIgnoreCase("RangedUnit")) {
             return new RangedUnit(name, health);
-        } else if (typeOfUnit.equalsIgnoreCase("cavalry")) {
+        } else if (typeOfUnit.equalsIgnoreCase("CavalryUnit")) {
             return new CavalryUnit(name, health);
         }
 
