@@ -114,11 +114,18 @@ public class GameView extends View {
         army1UnitInfo = new Text("");
 
         loadArmy1Button.setOnAction(e -> {
+            errorText.setText("");
+
             path = GUIController.uploadArmy();
-            army1FilePath.setText(path.toString());
-            army1 = ArmyController.readArmyFromFile(path);
-            army1Name.setText(army1.getName());
-            updateArmy1Info();
+            if (path != null) {
+                army1FilePath.setText(path.toString());
+                army1 = ArmyController.readArmyFromFile(path);
+                army1Name.setText(army1.getName());
+                updateArmy1Info();
+            } else {
+                errorText.setText("Something went wrong while uploading the file.");
+            }
+
         });
 
         units1Info.getChildren().addAll(army1UnitsText, army1UnitInfo);
@@ -143,12 +150,17 @@ public class GameView extends View {
         army2UnitInfo = new Text("");
 
         loadArmy2Button.setOnAction(e -> {
+            errorText.setText("");
             path = GUIController.uploadArmy();
-            army2FilePath.setText(path.toString());
-            army2 = ArmyController.readArmyFromFile(path);
-            army2Name.setText(army2.getName());
+            if (path != null) {
+                army2FilePath.setText(path.toString());
+                army2 = ArmyController.readArmyFromFile(path);
+                army2Name.setText(army2.getName());
+                updateArmy2Info();
+            } else {
+                errorText.setText("Something went wrong while uploading file, please do check that the file is correctly formatted according to the .csv format.");
+            }
 
-            updateArmy2Info();
         });
 
         units2Info.getChildren().addAll(army2UnitsText, army2UnitInfo);

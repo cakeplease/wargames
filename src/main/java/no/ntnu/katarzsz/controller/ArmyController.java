@@ -69,6 +69,11 @@ public class ArmyController {
         Path temporaryFilePath = Paths.get(file.getPath());
         Path filePath = Paths.get("src/main/resources/"+file.getName());
         if (!Files.exists(filePath)) {
+            Army army = ArmyController.readArmyFromFile(filePath);
+            if (army == null) {
+                return null;
+            }
+
             String data = "";
             try (BufferedReader bufferedReader = Files.newBufferedReader(temporaryFilePath)) {
                 String line;
@@ -77,12 +82,15 @@ public class ArmyController {
                 }
             } catch(Exception e) {
                 e.printStackTrace();
+                return null;
             }
 
             try {
                 Files.writeString(filePath, data, StandardCharsets.UTF_8);
             } catch (Exception e) {
                 e.printStackTrace();
+                return null;
+
             }
         }
         return filePath;
