@@ -1,7 +1,7 @@
 package no.ntnu.katarzsz.base;
 
 /**
- * Terrain types
+ * Terrain enum with terrain types
  */
 public enum Terrain {
     HILL,

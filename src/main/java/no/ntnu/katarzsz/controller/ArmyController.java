@@ -10,6 +10,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * ArmyController class
+ */
 public class ArmyController {
     /**
      * Saves army to a file under resources folder
@@ -26,6 +29,11 @@ public class ArmyController {
         DataHandler.saveToFile(data, filePath);
     }
 
+    /**
+     * Reads Army from a file
+     * @param filePath
+     * @return Army object
+     */
     public static Army readArmyFromFile(Path filePath) {
         Army army = null;
         if (Files.exists(filePath)) {
@@ -73,7 +81,7 @@ public class ArmyController {
     }
 
     /**
-    * Upload army
+    * Upload army to project files (resources)
     */
     public static Path uploadArmy(File file) {
         Path temporaryFilePath = Paths.get(file.getPath());

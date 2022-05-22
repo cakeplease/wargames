@@ -1,7 +1,10 @@
 package no.ntnu.katarzsz.view;
 
+/**
+ * Starts application
+ */
 public class Main {
     public static void main(String[] args) {
-        StartScreenView.main(args);
+        StartView.main(args);
     }
 }

@@ -28,7 +28,7 @@ public class Battle {
     /**
      * Simulates a battle until hasWinner is true.
      * Battle is won when one of the armies is empty of units.
-     * @return winner army
+     * @return BattleSimulationResult a record that consists of winner army and the simulation output
      */
     public BattleSimulationResult simulate() {
         Unit randomUnit1;
@@ -37,6 +37,7 @@ public class Battle {
         String simulationText = "";
         simulationText += "Welcome to WARGAMES! \n Let\'s get started!\n";
         simulationText += "Chosen terrain: "+terrain+"\n";
+
         while (!hasWinner) {
             if (armyOne.hasUnits() && armyTwo.hasUnits()) {
                 randomUnit1 = armyOne.getRandom();
@@ -56,7 +57,6 @@ public class Battle {
                 }
 
                 if (armyTwo.hasUnits()) {
-
                     randomUnit1 = armyOne.getRandom();
                     randomUnit2 = armyTwo.getRandom();
 
