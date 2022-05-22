@@ -17,7 +17,7 @@ import no.ntnu.katarzsz.controller.ScreenController;
  */
 public class StartView extends Application {
     private BorderPane frontPage = new BorderPane();
-    private Scene frontPageScene = new Scene(frontPage);
+    private Scene frontPageScene = new Scene(frontPage, 1000,700);
     protected ScreenController screenController = new ScreenController(frontPageScene);
     public static Stage stage;
     private GameView gameView = new GameView(screenController);
@@ -58,8 +58,7 @@ public class StartView extends Application {
         vBox.getChildren().addAll(gameTitle, startButton, exitButton);
         vBox.setAlignment(Pos.TOP_CENTER);
         vBox.setSpacing(20);
-        vBox.setPadding(new Insets(50, 50, 50, 50));
-
+        vBox.setPadding(new Insets(200, 50, 50, 50));
         frontPage.setPadding(new Insets(10, 10, 10, 10));
         frontPage.setCenter(vBox);
     }

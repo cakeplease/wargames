@@ -29,6 +29,7 @@ public class GameView extends View {
     protected GridPane pane;
     private ScreenController screenController;
     private Path path;
+    private Text welcomeText;
 
     //Army 1
     private ScrollPane army1Pane;
@@ -89,19 +90,17 @@ public class GameView extends View {
      */
     public void setup() {
         errorText.setFill(Color.RED);
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(100);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(100);
-        pane.getColumnConstraints().addAll(column1, column2);
+        VBox welcomeTextBox = new VBox();
+        welcomeText = new Text("Welcome to Wargames!\nTo simulate battle load armies in .csv format and choose the terrain.\nThe simulation output will show in Battle simulation box.\nScroll to the bottom to see the winner army.");
+        welcomeTextBox.getChildren().add(welcomeText);
+        welcomeTextBox.setAlignment(Pos.TOP_LEFT);
+        welcomeTextBox.setPadding(new Insets(10, 20, 10, 0));
 
         //Army 1 setup
         army1Pane = new ScrollPane();
         army1Pane.setPadding(new Insets(10, 10, 10, 10));
-        army1Pane.setMinHeight(250);
         army1Info = new VBox();
         units1Info = new VBox();
-
         army1Name = new Text("Army 1");
         loadArmy1Button = new Button("Load");
         army1FilePath = new Text("");
@@ -126,12 +125,9 @@ public class GameView extends View {
         army1Info.getChildren().addAll(army1Name, loadArmy1Button,army1FilePath,army1UnitNumber,army1InfantryUnitNumber, army1CommanderUnitNumber,army1RangedUnitNumber, army1CavalryUnitNumber,units1Info);
         army1Pane.setContent(army1Info);
 
-        GridPane.setConstraints(army1Pane, 0, 0);
-
         //Army 2
         army2Pane = new ScrollPane();
         army2Pane.setPadding(new Insets(10, 10, 10, 10));
-        army2Pane.setMinHeight(250);
         army2Info = new VBox();
         units2Info = new VBox();
         army2Name = new Text("Army 2");
@@ -159,11 +155,6 @@ public class GameView extends View {
         army2Info.getChildren().addAll(army2Name, loadArmy2Button,army2FilePath,army2UnitNumber,army2InfantryUnitNumber, army2CommanderUnitNumber,army2RangedUnitNumber, army2CavalryUnitNumber,units2Info);
         army2Pane.setContent(army2Info);
 
-        GridPane.setConstraints(army2Pane, 1, 0);
-
-        pane.setPadding(new Insets(50, 50, 50, 50));
-        pane.getChildren().addAll(army1Pane,army2Pane);
-
         //MENU with buttons
         VBox menuPane = new VBox();
         Button resetButton = new Button("Reset armies");
@@ -173,11 +164,8 @@ public class GameView extends View {
             errorText.setText("");
             army1 = ArmyController.readArmyFromFile(Paths.get(army1FilePath.getText()));
             army2 = ArmyController.readArmyFromFile(Paths.get(army2FilePath.getText()));
-
             updateArmiesInfo();
-
             simulationText.setText("Battle simulation");
-
         });
 
         //terrain select box
@@ -226,7 +214,7 @@ public class GameView extends View {
         exitButton.setOnAction(e -> System.exit(0));
         menuPane.setAlignment(Pos.TOP_CENTER);
         menuPane.setSpacing(20);
-        menuPane.setPadding(new Insets(10, 10, 10, 10));
+        menuPane.setPadding(new Insets(100, 10, 10, 0));
 
         //button styling
         resetButton.setStyle("-fx-min-width: 120; -fx-min-height: 40");
@@ -235,17 +223,33 @@ public class GameView extends View {
         exitButton.setStyle("-fx-min-width: 120; -fx-min-height: 40");
 
         menuPane.getChildren().addAll(resetButton, terrainSelect, startBattleButton,exitButton, errorText);
-        GridPane.setConstraints(menuPane, 3, 0);
-        pane.getChildren().add(menuPane);
+
 
         //Battle simulation output pane
         ScrollPane simulationPane = new ScrollPane();
         VBox simulationInfo = new VBox();
         simulationInfo.getChildren().addAll(simulationText);
         simulationPane.setContent(simulationInfo);
-        GridPane.setConstraints(simulationPane, 0, 1);
+
+        //instruction box
+        GridPane.setConstraints(welcomeTextBox, 0, 0);
+        pane.getChildren().add(welcomeTextBox);
+
+        //armies
+        GridPane.setConstraints(army1Pane, 1, 0);
+        GridPane.setConstraints(army2Pane, 2, 0);
+        pane.getChildren().addAll(army1Pane,army2Pane);
+
+        //menu with buttons
+        GridPane.setConstraints(menuPane, 0, 0);
+        pane.getChildren().add(menuPane);
+
+        //simulation pane
+        GridPane.setConstraints(simulationPane, 1, 1);
         GridPane.setColumnSpan(simulationPane, 2);
         pane.getChildren().add(simulationPane);
+
+        pane.setPadding(new Insets(50, 50, 50, 40));
     }
 
     public void resetPane() {
