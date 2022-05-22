@@ -1,6 +1,5 @@
 package no.ntnu.katarzsz.base;
 
-import no.ntnu.katarzsz.base.*;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,18 +78,6 @@ class ArmyTest {
 
         assertTrue(army.getCommanderUnits().stream().allMatch(u -> u instanceof CommanderUnit));
     }
-
-    /*@Test
-    public void writeArmyToFile() {
-        Army army = getTestArmyWithUnitsOfAllType();
-        army.saveArmyToFile();
-    }
-
-    @Test
-    public void readFromArmyFile() {
-        Army army = getTestArmyWithUnitsOfAllType();
-        army.readArmyFromFile();
-    }*/
 
     /**
      * Method used below to avoid duplicate code and get better readability

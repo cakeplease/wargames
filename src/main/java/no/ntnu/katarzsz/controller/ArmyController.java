@@ -48,23 +48,23 @@ public class ArmyController {
                         armyName = line;
                     } else {
                         String[] unit = line.split(splitBy);
-                        String unitType = unit[0].toString();
+                        String unitType = unit[0];
 
                         switch (unitType) {
                             case "InfantryUnit":
-                                InfantryUnit infantryUnit = new InfantryUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                InfantryUnit infantryUnit = new InfantryUnit(unit[1], Integer.parseInt(unit[2]));
                                 units.add(infantryUnit);
                                 break;
                             case "CommanderUnit":
-                                CommanderUnit commanderUnit = new CommanderUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                CommanderUnit commanderUnit = new CommanderUnit(unit[1], Integer.parseInt(unit[2]));
                                 units.add(commanderUnit);
                                 break;
                             case "CavalryUnit":
-                                CavalryUnit cavalryUnit = new CavalryUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                CavalryUnit cavalryUnit = new CavalryUnit(unit[1], Integer.parseInt(unit[2]));
                                 units.add(cavalryUnit);
                                 break;
                             case "RangedUnit":
-                                RangedUnit rangedUnit = new RangedUnit(unit[1].toString(), Integer.parseInt(unit[2].toString()));
+                                RangedUnit rangedUnit = new RangedUnit(unit[1], Integer.parseInt(unit[2]));
                                 units.add(rangedUnit);
                                 break;
                             default:

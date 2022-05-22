@@ -14,7 +14,6 @@ public class ScreenController {
     private HashMap<String, Pane> screenMap = new HashMap<>();
     private HashMap<String, View> viewMap = new HashMap<>();
     private Scene main;
-    private View view;
 
     public ScreenController(Scene main) {
         this.main = main;

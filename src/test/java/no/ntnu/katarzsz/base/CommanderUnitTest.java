@@ -1,8 +1,6 @@
 package no.ntnu.katarzsz.base;
 
-import no.ntnu.katarzsz.base.CavalryUnit;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommanderUnitTest {

@@ -1,7 +1,6 @@
 package no.ntnu.katarzsz.base;
 
 import org.junit.jupiter.api.Test;
-
 import static no.ntnu.katarzsz.base.Terrain.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

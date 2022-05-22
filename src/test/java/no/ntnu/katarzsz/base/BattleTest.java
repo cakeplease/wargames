@@ -1,9 +1,5 @@
 package no.ntnu.katarzsz.base;
 
-import no.ntnu.katarzsz.base.Army;
-import no.ntnu.katarzsz.base.Battle;
-import no.ntnu.katarzsz.base.CommanderUnit;
-import no.ntnu.katarzsz.base.RangedUnit;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,9 +24,12 @@ class BattleTest {
         armyTwo.add(new CommanderUnit("Unit3", 20));
         armyTwo.add(new RangedUnit("Unit4", 10));
 
-        Battle battle = new Battle(armyOne, armyTwo);
+        Battle battle = new Battle(armyOne, armyTwo, Terrain.FOREST);
+
         //Run battle
-        Army winner = battle.simulate();
-        assertTrue(winner instanceof Army);
+        BattleSimulationResult res = battle.simulate();
+        assertTrue(res.winnerArmy() instanceof Army);
+        assertTrue(res.simulationText() instanceof String);
+
     }
 }
