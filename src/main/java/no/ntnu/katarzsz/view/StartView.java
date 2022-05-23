@@ -31,6 +31,9 @@ public class StartView extends Application {
         StartView.stage = stage;
         screenController.addScreen("GameView", gameView);
         stage.setScene(frontPageScene);
+        frontPageScene.getStylesheets().add("./styles.css");
+        System.out.println(frontPageScene.getStylesheets());
+        //frontPageScene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
         stage.setTitle("Wargames");
         stage.show();
         this.setup();
