@@ -185,9 +185,17 @@ public class GameView extends View {
         //resets armies to the original condition from the files
         resetButton.setOnAction(e -> {
             errorText.setText("Error feedback box: ");
-            army1 = ArmyController.readArmyFromFile(Paths.get(army1FilePath.getText()));
-            army2 = ArmyController.readArmyFromFile(Paths.get(army2FilePath.getText()));
-            updateArmiesInfo();
+
+            if (army1 != null) {
+                army1 = ArmyController.readArmyFromFile(Paths.get(army1FilePath.getText()));
+                updateArmy1Info();
+            }
+
+            if (army2 != null) {
+                army2 = ArmyController.readArmyFromFile(Paths.get(army1FilePath.getText()));
+                updateArmy2Info();
+            }
+
             simulationText.setText("Battle simulation");
         });
 
