@@ -56,7 +56,7 @@ public class ArmyController {
                 }
                 army = new Army(armyName, units);
             } catch (Exception e) {
-                throw new RuntimeException("Uncorrectly formated file.");
+                return null;
             }
         }
         return army;
@@ -69,7 +69,7 @@ public class ArmyController {
         Path temporaryFilePath = Paths.get(file.getPath());
         Path filePath = Paths.get("src/main/resources/"+file.getName());
         if (!Files.exists(filePath)) {
-            Army army = ArmyController.readArmyFromFile(filePath);
+            Army army = ArmyController.readArmyFromFile(temporaryFilePath);
             if (army == null) {
                 return null;
             }

@@ -63,7 +63,7 @@ public class GameView extends View {
     private Terrain terrain;
     private Battle battle;
     private Text simulationText = new Text("Battle simulation");
-    private Text errorText = new Text("Feedback box: ");
+    private Text errorText = new Text("Error feedback box: ");
 
     /**
      * Constructor which takes in screenController used to change between panes
@@ -119,7 +119,7 @@ public class GameView extends View {
         army1UnitInfo = new Text("");
 
         loadArmy1Button.setOnAction(e -> {
-            errorText.setText("Feedback box: ");
+            errorText.setText("Error feedback box: ");
 
             path = GUIController.uploadArmy();
             if (path != null) {
@@ -163,7 +163,7 @@ public class GameView extends View {
         army2UnitInfo = new Text("");
 
         loadArmy2Button.setOnAction(e -> {
-            errorText.setText("Feedback box: ");
+            errorText.setText("Error feedback box: ");
             path = GUIController.uploadArmy();
             if (path != null) {
                 army2FilePath.setText(path.toString());
@@ -186,7 +186,7 @@ public class GameView extends View {
 
         //resets armies to the original condition from the files
         resetButton.setOnAction(e -> {
-            errorText.setText("Feedback box: ");
+            errorText.setText("Error feedback box: ");
             army1 = ArmyController.readArmyFromFile(Paths.get(army1FilePath.getText()));
             army2 = ArmyController.readArmyFromFile(Paths.get(army2FilePath.getText()));
             updateArmiesInfo();
@@ -214,7 +214,7 @@ public class GameView extends View {
         //BATTLE START
         Button startBattleButton = new Button("Start battle");
         startBattleButton.setOnAction(e -> {
-            errorText.setText("Feedback box: ");
+            errorText.setText("Error feedback box: ");
 
             //some requirements to run battle
             if (terrainSelect.getValue().toString().equals("Select terrain")) {
@@ -235,7 +235,7 @@ public class GameView extends View {
             }
 
             //Everything went fine, we can reset error text and proceed to simulation
-            errorText.setText("Feedback box: ");
+            errorText.setText("Error feedback box: ");
             battle = new Battle(army1,army2, terrain);
             BattleSimulationResult battleRes = battle.simulate();
             simulationText.setText(battleRes.simulationText());
