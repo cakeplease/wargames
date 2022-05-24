@@ -33,7 +33,7 @@ public class StartView extends Application {
         screenController.addScreen("GameView", gameView);
         stage.setScene(frontPageScene);
         frontPageScene.getStylesheets().add("/styles/styles.css");
-
+        frontPage.setId("background");
         Image icon = new Image("/styles/sword.png");
         stage.getIcons().add(icon);
 
@@ -48,18 +48,18 @@ public class StartView extends Application {
     public void setup() {
         VBox vBox = new VBox();
         Text gameTitle = new Text("WARGAMES");
-        gameTitle.setStyle("-fx-font-family: 'Book Antiqua'; -fx-font-size: 33");
-        gameTitle.setId("title-text");
+        gameTitle.setId("game-title");
 
         Button startButton = new Button();
         startButton.setText("Start");
         startButton.setStyle("-fx-font-size:20");
+        startButton.setId("start-button");
 
         startButton.setOnAction(e -> screenController.activate("GameView"));
 
         Button exitButton = new Button();
         exitButton.setText("Quit");
-        exitButton.setStyle("-fx-font-size:20");
+        exitButton.setId("quit-button");
         exitButton.setOnAction(e -> System.exit(0));
 
         vBox.getChildren().addAll(gameTitle, startButton, exitButton);

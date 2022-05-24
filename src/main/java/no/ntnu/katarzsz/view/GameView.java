@@ -5,9 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import no.ntnu.katarzsz.base.Army;
@@ -75,6 +73,8 @@ public class GameView extends View {
     public GameView(ScreenController screenController) {
         //main pane
         this.pane = new GridPane();
+        this.pane.setId("background");
+
         this.screenController = screenController;
         //sets up everything that we can see in this screen
         this.setup();
@@ -91,17 +91,24 @@ public class GameView extends View {
         errorText.setFill(Color.RED);
         VBox welcomeTextBox = new VBox();
         welcomeText = new Text("Welcome to Wargames!\nTo simulate battle load armies in .csv format and choose the terrain.\nThe simulation output will show in Battle simulation box.\nScroll to the bottom to see the winner army.");
+        welcomeText.setId("welcome-text");
         welcomeTextBox.getChildren().add(welcomeText);
         welcomeTextBox.setAlignment(Pos.TOP_LEFT);
         welcomeTextBox.setPadding(new Insets(10, 20, 10, 0));
 
         //Army 1 setup
         army1Pane = new ScrollPane();
+        army1Pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         army1Pane.setPadding(new Insets(10, 10, 10, 10));
         army1Info = new VBox();
+        army1Info.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         units1Info = new VBox();
+        units1Info.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         army1Name = new Text("Army 1");
         loadArmy1Button = new Button("Load");
+        loadArmy1Button.setId("load-button");
         army1FilePath = new Text("");
         army1UnitNumber = new Text("Number of units: -");
         army1InfantryUnitNumber = new Text("Infantry units: -");
@@ -131,13 +138,21 @@ public class GameView extends View {
         army1Info.getChildren().addAll(army1Name, loadArmy1Button,army1FilePath,army1UnitNumber,army1InfantryUnitNumber, army1CommanderUnitNumber,army1RangedUnitNumber, army1CavalryUnitNumber,units1Info);
         army1Pane.setContent(army1Info);
 
+
         //Army 2
         army2Pane = new ScrollPane();
+        army2Pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         army2Pane.setPadding(new Insets(10, 10, 10, 10));
         army2Info = new VBox();
+        army2Info.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         units2Info = new VBox();
+        units2Info.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
         army2Name = new Text("Army 2");
         loadArmy2Button = new Button("Load");
+        loadArmy2Button.setId("load-button");
         army2FilePath = new Text("");
         army2UnitNumber = new Text("Number of units: -");
         army2InfantryUnitNumber = new Text("Infantry units: -");
@@ -181,6 +196,15 @@ public class GameView extends View {
 
         //terrain select box
         ComboBox terrainSelect = new ComboBox();
+        terrainSelect.setOnAction(e-> {
+            if (terrainSelect.getValue() == Terrain.HILL) {
+                this.pane.setStyle("-fx-background-color: linear-gradient(from 100% 25% to 100% 50%, #000, #3d3d3d);");
+            } else if (terrainSelect.getValue() == Terrain.PLAINS) {
+                this.pane.setStyle("-fx-background-color: linear-gradient(from 100% 25% to 100% 50%, #000, #a7af34);");
+            } else if (terrainSelect.getValue() == Terrain.FOREST) {
+                this.pane.setStyle("-fx-background-color: linear-gradient(from 100% 25% to 100% 50%, #000, #155000);");
+            }
+        });
         terrainSelect.getItems().add("Select terrain");
         terrainSelect.getSelectionModel().selectFirst();
 
@@ -226,19 +250,20 @@ public class GameView extends View {
         menuPane.setAlignment(Pos.TOP_CENTER);
         menuPane.setSpacing(20);
         menuPane.setPadding(new Insets(100, 10, 10, 0));
-
-        //button styling
-        resetButton.setStyle("-fx-min-width: 120; -fx-min-height: 40");
-        terrainSelect.setStyle("-fx-min-width: 120; -fx-min-height: 40");
-        startBattleButton.setStyle("-fx-min-width: 120; -fx-min-height: 40");
-        exitButton.setStyle("-fx-min-width: 120; -fx-min-height: 40");
-
         menuPane.getChildren().addAll(resetButton, terrainSelect, startBattleButton,exitButton, errorText);
 
 
         //Battle simulation output pane
         ScrollPane simulationPane = new ScrollPane();
         VBox simulationInfo = new VBox();
+        simulationInfo.setPrefWidth(485);
+        simulationInfo.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        simulationPane.setMinHeight(250);
+        simulationPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        simulationPane.setPadding(new Insets(10, 10, 10, 10));
+
         simulationInfo.getChildren().addAll(simulationText);
         simulationPane.setContent(simulationInfo);
 

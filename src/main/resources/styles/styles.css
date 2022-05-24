@@ -1,3 +1,50 @@
-.button {
+.button, .combo-box {
+    -fx-min-width: 120;
+    -fx-min-height: 40;
+}
 
+#start-button, #quit-button {
+    -fx-font-size:20;
+    -fx-border-color: #000;
+    -fx-border-radius: 4 4 4 4;
+    -fx-background-radius: 4 4 4 4;
+}
+
+#start-button:hover, #quit-button:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+
+.text {
+    -fx-font-family: 'Roboto';
+
+}
+
+#welcome-text {
+    -fx-fill: #fff;
+}
+
+#game-title {
+    -fx-font-size: 50;
+    -fx-fill: #fff;
+    -fx-font-family: 'Book Antiqua';
+}
+
+#load-button {
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+}
+#background {
+    -fx-background-color: linear-gradient(from 100% 25% to 100% 50%, #000, #369d00);
+}
+
+.root {
+    -fx-font-family: 'Roboto';
+    -fx-fill: #fff;
+}
+
+.scroll-pane {
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
 }
