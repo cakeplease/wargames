@@ -34,6 +34,7 @@ public class StartView extends Application {
         stage.setScene(frontPageScene);
         frontPageScene.getStylesheets().add("/styles/styles.css");
         frontPage.setId("background");
+
         Image icon = new Image("/styles/sword.png");
         stage.getIcons().add(icon);
 

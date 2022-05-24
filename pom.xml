@@ -16,12 +16,14 @@
     </properties>
 
     <build>
+        <!-- Setup resources folder -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
         <plugins>
+            <!-- Maven compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -30,11 +32,15 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+            <!-- Maven surfire plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
             </plugin>
+
+            <!-- Maven JavaFX plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -47,11 +53,15 @@
     </build>
 
     <dependencies>
+
+        <!-- JavaFX controls -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>17.0.2</version>
         </dependency>
+
+        <!-- JUnit for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

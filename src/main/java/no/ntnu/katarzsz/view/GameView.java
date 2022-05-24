@@ -120,7 +120,6 @@ public class GameView extends View {
 
         loadArmy1Button.setOnAction(e -> {
             errorText.setText("Error feedback box: ");
-
             path = GUIController.uploadArmy();
             if (path != null) {
                 army1FilePath.setText(path.toString());
@@ -173,7 +172,6 @@ public class GameView extends View {
             } else {
                 errorText.setText("Something went wrong while uploading file");
             }
-
         });
 
         units2Info.getChildren().addAll(army2UnitsText, army2UnitInfo);
@@ -193,7 +191,7 @@ public class GameView extends View {
             simulationText.setText("Battle simulation");
         });
 
-        //terrain select box
+        //terrain combo box, change background on select action
         ComboBox terrainSelect = new ComboBox();
         terrainSelect.setOnAction(e-> {
             if (terrainSelect.getValue() == Terrain.HILL) {
@@ -250,6 +248,7 @@ public class GameView extends View {
         menuPane.setSpacing(20);
         menuPane.setPadding(new Insets(100, 10, 10, 0));
 
+        //Error text box for contrast purposes
         VBox errorTextBox = new VBox();
         errorTextBox.getChildren().add(errorText);
         errorTextBox.setPadding(new Insets(10, 10, 10, 10));
@@ -257,7 +256,6 @@ public class GameView extends View {
         errorTextBox.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 
         menuPane.getChildren().addAll(resetButton, terrainSelect, startBattleButton,exitButton, errorTextBox);
-
 
         //Battle simulation output pane
         ScrollPane simulationPane = new ScrollPane();
@@ -267,9 +265,7 @@ public class GameView extends View {
 
         simulationPane.setMinHeight(250);
         simulationPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-
         simulationPane.setPadding(new Insets(10, 10, 10, 10));
-
         simulationInfo.getChildren().addAll(simulationText);
         simulationPane.setContent(simulationInfo);
 
@@ -294,14 +290,24 @@ public class GameView extends View {
         pane.setPadding(new Insets(50, 50, 50, 40));
     }
 
+    /**
+     * Reset all elements in the pane, useful when switching between panes
+     */
     public void resetPane() {
         pane.getChildren().clear();
     }
 
+    /**
+     * Update both armies info in the GUI
+     */
     public void updateArmiesInfo() {
         updateArmy1Info();
         updateArmy2Info();
     }
+
+    /**
+     * Update army 1 info in the GUI
+     */
     public void updateArmy1Info() {
         army1UnitNumber.setText("Number of units: " + army1.getAllUnits().size());
         army1InfantryUnitNumber.setText("Infantry units: " + army1.getInfantryUnits().size());
@@ -310,6 +316,10 @@ public class GameView extends View {
         army1CavalryUnitNumber.setText("Cavalry units: " + army1.getCavalryUnits().size());
         army1UnitInfo.setText(army1.getAllUnitsInCsvFormat());
     }
+
+    /**
+     * Update army 2 info in the GUI
+     */
     public void updateArmy2Info() {
         army2UnitNumber.setText("Number of units: " + army2.getAllUnits().size());
         army2InfantryUnitNumber.setText("Infantry units: " + army2.getInfantryUnits().size());
