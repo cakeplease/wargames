@@ -18,7 +18,7 @@ public abstract class Unit {
      * @param attack
      * @param armor
      */
-    public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException {
+    protected Unit(String name, int health, int attack, int armor) throws IllegalArgumentException {
         this.name = name;
 
         if (health <= 0) {
@@ -39,7 +39,7 @@ public abstract class Unit {
      * Attack method
      * @param opponent
      */
-    public void attack(Unit opponent) {
+    protected void attack(Unit opponent) {
         int health = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
         opponent.getAttacked();
         this.registerAttack();

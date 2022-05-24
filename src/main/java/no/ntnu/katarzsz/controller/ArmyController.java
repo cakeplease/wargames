@@ -56,7 +56,7 @@ public class ArmyController {
                 }
                 army = new Army(armyName, units);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Uncorrectly formated file.");
             }
         }
         return army;

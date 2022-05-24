@@ -63,7 +63,7 @@ public class GameView extends View {
     private Terrain terrain;
     private Battle battle;
     private Text simulationText = new Text("Battle simulation");
-    private Text errorText = new Text();
+    private Text errorText = new Text("Feedback box: ");
 
     /**
      * Constructor which takes in screenController used to change between panes
@@ -99,7 +99,6 @@ public class GameView extends View {
         //Army 1 setup
         army1Pane = new ScrollPane();
         army1Pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-
         army1Pane.setPadding(new Insets(10, 10, 10, 10));
         army1Info = new VBox();
         army1Info.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -120,7 +119,7 @@ public class GameView extends View {
         army1UnitInfo = new Text("");
 
         loadArmy1Button.setOnAction(e -> {
-            errorText.setText("");
+            errorText.setText("Feedback box: ");
 
             path = GUIController.uploadArmy();
             if (path != null) {
@@ -164,7 +163,7 @@ public class GameView extends View {
         army2UnitInfo = new Text("");
 
         loadArmy2Button.setOnAction(e -> {
-            errorText.setText("");
+            errorText.setText("Feedback box: ");
             path = GUIController.uploadArmy();
             if (path != null) {
                 army2FilePath.setText(path.toString());
@@ -172,7 +171,7 @@ public class GameView extends View {
                 army2Name.setText(army2.getName());
                 updateArmy2Info();
             } else {
-                errorText.setText("Something went wrong while uploading file, please do check that the file is correctly formatted according to the .csv format.");
+                errorText.setText("Something went wrong while uploading file");
             }
 
         });
@@ -187,7 +186,7 @@ public class GameView extends View {
 
         //resets armies to the original condition from the files
         resetButton.setOnAction(e -> {
-            errorText.setText("");
+            errorText.setText("Feedback box: ");
             army1 = ArmyController.readArmyFromFile(Paths.get(army1FilePath.getText()));
             army2 = ArmyController.readArmyFromFile(Paths.get(army2FilePath.getText()));
             updateArmiesInfo();
@@ -215,7 +214,7 @@ public class GameView extends View {
         //BATTLE START
         Button startBattleButton = new Button("Start battle");
         startBattleButton.setOnAction(e -> {
-            errorText.setText("");
+            errorText.setText("Feedback box: ");
 
             //some requirements to run battle
             if (terrainSelect.getValue().toString().equals("Select terrain")) {
@@ -236,7 +235,7 @@ public class GameView extends View {
             }
 
             //Everything went fine, we can reset error text and proceed to simulation
-            errorText.setText("");
+            errorText.setText("Feedback box: ");
             battle = new Battle(army1,army2, terrain);
             BattleSimulationResult battleRes = battle.simulate();
             simulationText.setText(battleRes.simulationText());
@@ -250,7 +249,14 @@ public class GameView extends View {
         menuPane.setAlignment(Pos.TOP_CENTER);
         menuPane.setSpacing(20);
         menuPane.setPadding(new Insets(100, 10, 10, 0));
-        menuPane.getChildren().addAll(resetButton, terrainSelect, startBattleButton,exitButton, errorText);
+
+        VBox errorTextBox = new VBox();
+        errorTextBox.getChildren().add(errorText);
+        errorTextBox.setPadding(new Insets(10, 10, 10, 10));
+        errorTextBox.setStyle("-fx-border-color: black");
+        errorTextBox.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        menuPane.getChildren().addAll(resetButton, terrainSelect, startBattleButton,exitButton, errorTextBox);
 
 
         //Battle simulation output pane
